@@ -9,14 +9,14 @@
 class SaIoTSensor
 {
 private:
-
   String jConf;
   String key;
   String serial;
   String lastDate;
-  bool reportMe = 0;
+  bool reportMe;
   double value;
-  //Pensar em atributos que vão fora do json de configuração! 
+  String valueStr;
+  //Pensar em atributos que vão fora do json de configuração!
   /*long int deadband = NULL_VALUE,
                     timeout = NULL_VALUE,
                     lastResolution = 0,
@@ -37,22 +37,27 @@ public:
      Sensor JSON Functions
   ******************************************************************************************************************************************************/
 
-  String getKey(void); //1
+  String getKey(void);    //1
   String getSerial(void); //2
-  //1 e 2: campos necessários sempre que for enviar dados ao server 
+  //1 e 2: campos necessários sempre que for enviar dados ao server
 
-  String getByField(String _field); 
+  String getByField(String _field);
   String getUnit(void);
   String getType(void);
   String getTag(void);
   String getJsonConfig(void);
   String getLastDate(void);
+  String getString(void);
+  String getValueStr(void);
   double getValue(void);
   bool getReport();
 
   void setJsonConfig(String _jConf);
-  void sendData(double _value);
+  //void sendData(double _value);
   void sendData(double _value, String dateTime);
+  void sendData(String _value, String dateTime);
+  void sendData(double _value);
+  void sendData(String _value);
   /*void setValue(double _value);
   void setTimeout(long int _timeout);
   void setDeadBand(long int _deadband);*/
@@ -67,7 +72,7 @@ public:
   bool exceededResolution(void);
   */
 
-   /****************************************************************
+  /****************************************************************
    * Sensor Communication Functions: sending data
   ****************************************************************/
   //int sendValue(void);

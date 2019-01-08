@@ -5,18 +5,21 @@
 #include <ESP8266HTTPClient.h>
 #include <ESP8266WiFi.h>
 
-#define rotaDateTime "http://api.saiot.ect.ufrn.br/v1/device/history/datetime"
+#define rotaDateTime "http://dev.api.saiot.ect.ufrn.br/v1/device/history/datetime"
+#define rotaPSensor "/history/post/logs/sensor/"
+#define rotaPController "/control/put/me/"
 
 typedef void (*functionPointer)(char*, uint8_t*, unsigned int); //definido assim pelo MQTT_CALLBACK_SIGNATURE;
 
 class SaIoTCom
 {
-  private:  
+  private:
     //WiFiClient espClient;
     PubSubClient mqttClient;
   public:
     SaIoTCom();
     SaIoTCom(WiFiClient& espClient);
+    boolean connected();
     String getToken(String hostHttp,String user, String password, String serial);
     static String getDateNow();
     void setServerPort(const char * server, uint16_t port);
@@ -25,6 +28,7 @@ class SaIoTCom
     void setClient(WiFiClient& espClient);
     boolean handleCom();
     boolean publishData(String data);
+    boolean putMeController(String data);
 };
 
 #endif

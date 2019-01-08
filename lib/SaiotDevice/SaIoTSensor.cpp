@@ -18,6 +18,9 @@ String SaIoTSensor::getKey(void){
 String SaIoTSensor::getSerial(void){
     return serial;
 }
+String SaIoTSensor::getValueStr(void){
+    return valueStr;
+}
 double SaIoTSensor::getValue(void){
     return value;
 }
@@ -62,6 +65,9 @@ String SaIoTSensor::getType(void){
 String SaIoTSensor::getLastDate(void){
     return lastDate;
 }
+String SaIoTSensor::getString(void){
+    return valueStr;
+}
 
 //METODOS SET 
 
@@ -71,17 +77,32 @@ void SaIoTSensor::setJsonConfig(String _jsonConfig){
     serial = getByField("serial");
 }
 
-void SaIoTSensor::sendData(double _value){
+/*void SaIoTSensor::sendData(double _value){
     //reportMe = 1;
-    return this->sendData(_value,SaIoTCom::getDateNow());
+    return this->sendData(_value,SaIoTCom::getDateNow()); //requisição http pra cada envio??? Gerenciar hora!
 
-}
+}*/
 void SaIoTSensor::sendData(double _value, String dateTime){
     reportMe = 1;
     value = _value;
     lastDate = dateTime;
 }
+void SaIoTSensor::sendData(String _value, String dateTime){
+    reportMe = 1;
+    valueStr = _value;
+    lastDate = dateTime;
+}
 
+void SaIoTSensor::sendData(double _value){
+    reportMe = 1;
+    value = _value;
+    lastDate = String(0);
+}
+void SaIoTSensor::sendData(String _value){
+    reportMe = 1;
+    valueStr = _value;
+    lastDate = String(0);
+}
 //FUNCIONALIDADES FUTURAS
 
 /*void SaIoTSensor::setValue(double _value){

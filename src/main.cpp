@@ -1,10 +1,6 @@
 #include <Arduino.h>
 #include <ESP8266WiFi.h>
 #include <SaIoTDeviceLib.h>
-#include <PubSubClient.h>
-#include<ESP8266HTTPClient.h>
-#include<WiFiManager.h>
-
 //Falta: ajustar envios, pegar hora, definir o TYPE e testar
 //Parametros da conexão
 
@@ -20,7 +16,7 @@ unsigned long int lastTime;
 void calibracao();
 void callback(char* topic, byte* payload, unsigned int length);
 //Parametros do device
-SaIoTDeviceLib deviceLuz("dLuz","lumCBA","ricardo@email.com");
+SaIoTDeviceLib deviceLuz("dLuz","zzzz555424","ricardodev@email.com");
 String senha = "12345678910";
 //Sensor
 SaIoTSensor sLuminosidade("sLum","SensorLDR","Lumens","number");
